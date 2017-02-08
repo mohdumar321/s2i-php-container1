@@ -46,3 +46,9 @@ envsubst < /opt/app-root/etc/conf.d/50-mpm-tuning.conf.template > /opt/app-root/
 envsubst < /opt/app-root/etc/conf.d/00-documentroot.conf.template > /opt/app-root/etc/conf.d/00-documentroot.conf
 
 exec httpd -D FOREGROUND
+
+# prepare Dynatrace
+. /var/lib/dynatrace/dynatrace-java-env.sh
+
+# run the application
+java $JAVA_OPTS -jar myapp.jar
