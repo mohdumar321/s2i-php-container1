@@ -78,7 +78,29 @@ for dir in ${dirs}; do
 
   IMAGE_NAME="${NAMESPACE}${BASE_IMAGE_NAME}-${dir//./}-${OS}"
 
-  if [[ -v TEST_MODE ]]; then
+ # if [[ -v TEST_MODE ]]; then
+  #  IMAGE_NAME+="-candidate"
+ # fi
+
+ # echo "-> Building ${IMAGE_NAME} ..."
+
+  #pushd ${dir} > /dev/null
+#  if [ "$OS" == "rhel7" -o "$OS" == "rhel7-candidate" ]; then
+#    docker_build_with_version Dockerfile.rhel7
+ # else
+ #   docker_build_with_version Dockerfile
+#  fi
+
+  #if [[ -v TEST_MODE ]]; then
+  #  IMAGE_NAME=${IMAGE_NAME} test/run
+
+ #  if [[ $? -eq 0 ]] && [[ "${TAG_ON_SUCCESS}" == "true" ]]; then
+   #   echo "-> Re-tagging ${IMAGE_NAME} image to ${IMAGE_NAME%"-candidate"}"
+  #    docker tag $IMAGE_NAME ${IMAGE_NAME%"-candidate"}
+ #   fi
+ # fi
+
+  if [[ TEST_MODE ]]; then
     IMAGE_NAME+="-candidate"
   fi
 
@@ -91,7 +113,7 @@ for dir in ${dirs}; do
     docker_build_with_version Dockerfile
   fi
 
-  if [[ -v TEST_MODE ]]; then
+  if [[ TEST_MODE ]]; then
     IMAGE_NAME=${IMAGE_NAME} test/run
 
     if [[ $? -eq 0 ]] && [[ "${TAG_ON_SUCCESS}" == "true" ]]; then
@@ -99,6 +121,5 @@ for dir in ${dirs}; do
       docker tag $IMAGE_NAME ${IMAGE_NAME%"-candidate"}
     fi
   fi
-
   popd > /dev/null
 done
