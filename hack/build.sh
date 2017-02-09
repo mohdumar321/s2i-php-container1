@@ -52,9 +52,9 @@ function squash {
   
   
    #########easy_install -q --user docker_py==1.7.2 docker-squash==1.0.4
+   pip -q --user docker_py==1.7.2 docker-squash==1.0.4
    
-   
-   easy_install -q --user https://github.com/SonamVerma9/s2i-php-container.git docker_py==2.0.2 docker-squash==1.0.5
+ #  easy_install -q --user https://github.com/SonamVerma9/s2i-php-container.git docker_py==2.0.2 docker-squash==1.0.5
    
    
    
