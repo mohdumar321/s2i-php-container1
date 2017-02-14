@@ -47,4 +47,7 @@ envsubst < /opt/app-root/etc/conf.d/00-documentroot.conf.template > /opt/app-roo
 
 exec httpd -D FOREGROUND
 
+NGINX_CONF=${NGINX_CONF-/opt/app-root/etc/nginx.conf}
+exec ${NGINX_BASE_DIR}/usr/sbin/nginx -c "$NGINX_CONF"
+
 
