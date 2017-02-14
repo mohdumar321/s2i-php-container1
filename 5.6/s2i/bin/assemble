@@ -28,7 +28,4 @@ fi
 # Fix source directory permissions
 fix-permissions ./
 
-# install Dynatrace
-export DT_TENANT=fvk80666
-export DT_API_TOKEN=d4-vpjumSiiJJyUiUG1A0
-curl https://files.dynatrace.com/saas/agent/paas-install.sh | sh
+
