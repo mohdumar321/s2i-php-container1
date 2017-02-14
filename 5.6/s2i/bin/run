@@ -47,8 +47,4 @@ envsubst < /opt/app-root/etc/conf.d/00-documentroot.conf.template > /opt/app-roo
 
 exec httpd -D FOREGROUND
 
-# prepare Dynatrace
-. /var/lib/dynatrace/dynatrace-java-env.sh
 
-# run the application
-java $JAVA_OPTS -jar myapp.jar
