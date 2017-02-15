@@ -2,20 +2,14 @@
 
 set -e
 
-shopt -s dotglob
 echo "---> Installing application source..."
-mv /tmp/src/* ./
+cp -Rf /tmp/src/. ./
 
 if [ -f composer.json ]; then
   echo "Found 'composer.json', installing dependencies using composer.phar... "
 
   # Install Composer
-  curl https://getcomposer.org/installer | php
-
-  # Change the repo mirror if provided
-  if [ -n "$COMPOSER_MIRROR" ]; then
-    ./composer.phar config -g repositories.packagist composer $COMPOSER_MIRROR
-  fi
+  php -r "readfile('https://getcomposer.org/installer');" | php
 
   # Install App dependencies using Composer
   ./composer.phar install --no-interaction --no-ansi --optimize-autoloader
