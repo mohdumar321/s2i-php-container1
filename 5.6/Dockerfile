@@ -23,13 +23,9 @@ LABEL io.k8s.description="Platform for building and running PHP 5.6 applications
     
 # Install Apache httpd and PHP
 RUN yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus\
-    apt-get install -y \
-      nginx \
-      php5.6-fpm php5.6-cli php5.6-cgi \
-      php5.6-interbase php5.6-pgsql php5.6-mysql \
-      php5.6-curl php5.6-mbstring \
-      php5.6-gd php5.6-xml php5.6-zip php5.6-json \
-      php-pear php-igbinary php-mongo php-redis &&\
+  RUN yum install --setopt=tsflags=nodocs -y centos-release-scl-rh && \
+    yum install --setopt=tsflags=nodocs -y bcrypt rh-nginx${NGINX_VERSION/\./} && \
+    yum clean all -y && \
    # INSTALL_PKGS="rh-php56 rh-php56-php rh-php56-php-mysqlnd rh-php56-php-pgsql rh-php56-php-bcmath \
     #              rh-php56u-fpm-nginx \
     #              rh-php56-php-gd rh-php56-php-intl rh-php56-php-ldap rh-php56-php-mbstring rh-php56-php-pdo \
