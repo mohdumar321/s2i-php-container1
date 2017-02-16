@@ -35,6 +35,10 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 # run and build the applications.
 COPY ./contrib/ /opt/app-root
 
+RUN mkdir -p /etc/php-fpm.d/www.conf
+RUN mkdir -p /etc/php-fpm.conf
+
+
 RUN cp /opt/app-root/etc/conf.d/php-fpm/pool.conf /etc/php-fpm.d/www.conf
 RUN cp /opt/app-root/etc/conf.d/php-fpm/fpm.conf /etc/php-fpm.conf
 
