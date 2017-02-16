@@ -22,11 +22,9 @@ LABEL io.k8s.description="Platform for building and running PHP 5.6 applications
       RUN rm setup-ius.sh
     
 # Install Apache httpd and PHP
-RUN yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus\
-rh-php56 rh-php56-php rh-php56-php-mysqlnd rh-php56-php-pgsql rh-php56-php-bcmath \
-                  rh-php56-php-gd rh-php56-php-intl rh-php56-php-ldap rh-php56-php-mbstring rh-php56-php-pdo \
-                  rh-php56-php-pecl-memcache rh-php56-php-process rh-php56-php-soap rh-php56-php-opcache rh-php56-php-xml \
-                  rh-php56-php-pecl-xdebug rh-php56-php-gmp
+RUN yum install --setopt=tsflags=nodocs -y centos-release-scl-rh && \
+    yum install --setopt=tsflags=nodocs -y bcrypt rh-nginx${NGINX_VERSION/\./} && \
+    yum clean all -y 
    # INSTALL_PKGS="rh-php56 rh-php56-php rh-php56-php-mysqlnd rh-php56-php-pgsql rh-php56-php-bcmath \
     #              rh-php56u-fpm-nginx \
     #              rh-php56-php-gd rh-php56-php-intl rh-php56-php-ldap rh-php56-php-mbstring rh-php56-php-pdo \
@@ -34,7 +32,7 @@ rh-php56 rh-php56-php rh-php56-php-mysqlnd rh-php56-php-pgsql rh-php56-php-bcmat
       #            rh-php56-php-pecl-xdebug rh-php56-php-gmp" && \
    
    
-    RUN yum clean all -y
+
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 
