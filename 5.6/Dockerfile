@@ -23,11 +23,18 @@ LABEL io.k8s.description="Platform for building and running PHP 5.6 applications
     
 # Install Apache httpd and PHP
 RUN yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus\
-    INSTALL_PKGS="rh-php56 rh-php56-php rh-php56-php-mysqlnd rh-php56-php-pgsql rh-php56-php-bcmath \
-                  rh-php56u-fpm-nginx \
-                  rh-php56-php-gd rh-php56-php-intl rh-php56-php-ldap rh-php56-php-mbstring rh-php56-php-pdo \
-                  rh-php56-php-pecl-memcache rh-php56-php-process rh-php56-php-soap rh-php56-php-opcache rh-php56-php-xml \
-                  rh-php56-php-pecl-xdebug rh-php56-php-gmp" && \
+    apt-get install -y \
+      nginx \
+      php5.6-fpm php5.6-cli php5.6-cgi \
+      php5.6-interbase php5.6-pgsql php5.6-mysql \
+      php5.6-curl php5.6-mbstring \
+      php5.6-gd php5.6-xml php5.6-zip php5.6-json \
+      php-pear php-igbinary php-mongo php-redis &&\
+   # INSTALL_PKGS="rh-php56 rh-php56-php rh-php56-php-mysqlnd rh-php56-php-pgsql rh-php56-php-bcmath \
+    #              rh-php56u-fpm-nginx \
+    #              rh-php56-php-gd rh-php56-php-intl rh-php56-php-ldap rh-php56-php-mbstring rh-php56-php-pdo \
+     #             rh-php56-php-pecl-memcache rh-php56-php-process rh-php56-php-soap rh-php56-php-opcache rh-php56-php-xml \
+      #            rh-php56-php-pecl-xdebug rh-php56-php-gmp" && \
    
    
     yum clean all -y
