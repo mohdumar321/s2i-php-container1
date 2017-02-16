@@ -22,7 +22,7 @@ LABEL io.k8s.description="Platform for building and running PHP 5.6 applications
       RUN rm setup-ius.sh
     
 # Install Apache httpd and PHP
-RUN yum install --setopt=tsflags=nodocs -y centos-release-scl-rh && \
+RUN yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus \
     yum install --setopt=tsflags=nodocs -y bcrypt rh-nginx${NGINX_VERSION/\./} && \
     yum clean all -y 
    # INSTALL_PKGS="rh-php56 rh-php56-php rh-php56-php-mysqlnd rh-php56-php-pgsql rh-php56-php-bcmath \
